@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app="spymaster">
+<head>
+  <title>SpyMaster Game</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/gameboard.css">
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+
+  <script type="text/javascript" src="/app/app.js"></script>
+  <script type="text/javascript" src="/app/logincontroller.js"></script>
+  <script type="text/javascript" src="/app/gameboard.js"></script>
+  <script type="text/javascript" src="/app/gamedataservice.js"></script>
+</head>
+<body class="gameboard">
+
+  <ng-view></ng-view>
+
+  <div style="position:absolute; bottom:0; font-size:10px">
+    &#64;2016 Kevin Dang. All rights reserved.  
+  </div>
+
+</body>
+</html>

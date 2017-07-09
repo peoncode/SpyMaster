@@ -1,0 +1,101 @@
+<div>
+
+  <div class="container-fluid no-select">
+    <div class="row score-row" ng-hide="isSpyMaster">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr score-blue">BLUE: {{blueScore}}</div>
+      <div class="col-xs-1"><span class="glyphicon glyphicon-arrow-left flash-arrow" ng-show="whosTurn=='blue'"></span><span class="score-winner" ng-show="blueWins">WIN!</span></div>
+      <div class="col-xs-4 pad_lr"><div class="score-status" ng-show="!redWins && !blueWins">ROUND {{gameRound}}</div><div ng-show="redWins || blueWins" class="center"><button ng-click="newRound()" class="new-round btn btn-success">Start Next Round</button></div></div>
+      <div class="col-xs-1"><span class="glyphicon glyphicon-arrow-right flash-arrow" ng-show="whosTurn=='red'"></span><span class="score-winner" ng-show="redWins">WIN!</span></div>      
+      <div class="col-xs-2 pad_lr score-red">RED: {{redScore}}</div>
+      <div class="col-xs-1"><div class="dropdown">
+      <div id="dLabelR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="optionsmenu glyphicon glyphicon-option-vertical"></div>
+        <ul class="menuitem dropdown-menu dropdown-menu-right" aria-labelledby="dLabelR">GameId: {{gameId}}</ul></div></div>
+    </div>
+
+    <div class="row score-row" ng-show="isSpyMaster">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10 pad_lr"><div class="score-status">SpyMaster - GameId: {{gameId}}</div></div>     
+      <div class="col-xs-1"><div class="dropdown">
+      <div id="dLabelR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="optionsmenu glyphicon glyphicon-option-vertical"></div>
+        <ul class="menuitem dropdown-menu dropdown-menu-right" aria-labelledby="dLabelR">GameId: {{gameId}}</ul></div></div>
+    </div>
+
+    <div class="row score-row" ng-hide="isSpyMaster">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><table><tr>
+                                      <td ng-hide="blueCardsOpen >= 1"></td>
+                                      <td ng-hide="blueCardsOpen >= 2"></td>
+                                      <td ng-hide="blueCardsOpen >= 3"></td>
+                                      <td ng-hide="blueCardsOpen >= 4"></td>
+                                      <td ng-hide="blueCardsOpen >= 5"></td>
+                                      <td ng-hide="blueCardsOpen >= 6"></td>
+                                      <td ng-hide="blueCardsOpen >= 7"></td>
+                                      <td ng-hide="blueCardsOpen >= 8"></td>
+                                      <td ng-hide="whoStarts == 'red' || blueCardsOpen >=9"></td>
+                                    </tr></table></div>
+      <div class="col-xs-1"></div>
+      <div class="col-xs-4 pad_lr"></div>
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><table class="dots-table-right"><tr>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (9 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (8 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (7 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (6 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (5 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (4 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (3 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': redCardsOpen >= (2 - (whoStarts == 'blue'?1:0))}"></td>
+                                      <td class="dots-red" ng-class="{'dots-none': whoStarts == 'blue' || redCardsOpen >= 1}"></td>
+                                    </tr></table></div>
+      <div class="col-xs-1"></div>
+    </div>
+    <div class="row pad_t">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(0)" ng-disabled="cardList[0].isRevealed" ng-class="cardList[0].cardColor" class="card btn btn-default">{{cardList[0].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(1)" ng-disabled="cardList[1].isRevealed" ng-class="cardList[1].cardColor" class="card btn btn-default">{{cardList[1].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(2)" ng-disabled="cardList[2].isRevealed" ng-class="cardList[2].cardColor" class="card btn btn-default">{{cardList[2].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(3)" ng-disabled="cardList[3].isRevealed" ng-class="cardList[3].cardColor" class="card btn btn-default">{{cardList[3].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(4)" ng-disabled="cardList[4].isRevealed" ng-class="cardList[4].cardColor" class="card btn btn-default">{{cardList[4].name}}</button></div>
+      <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><button id="5" ng-click="revealCard(5)" ng-disabled="cardList[5].isRevealed" ng-class="cardList[5].cardColor" class="card btn btn-default">{{cardList[5].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button id="6" ng-click="revealCard(6)" ng-disabled="cardList[6].isRevealed" ng-class="cardList[6].cardColor" class="card btn btn-default">{{cardList[6].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button id="7" ng-click="revealCard(7)" ng-disabled="cardList[7].isRevealed" ng-class="cardList[7].cardColor" class="card btn btn-default">{{cardList[7].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button id="8" ng-click="revealCard(8)" ng-disabled="cardList[8].isRevealed" ng-class="cardList[8].cardColor" class="card btn btn-default">{{cardList[8].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button id="9" ng-click="revealCard(9)" ng-disabled="cardList[9].isRevealed" ng-class="cardList[9].cardColor" class="card btn btn-default">{{cardList[9].name}}</button></div>
+      <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(10)" ng-disabled="cardList[10].isRevealed" ng-class="cardList[10].cardColor" class="card btn btn-default">{{cardList[10].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(11)" ng-disabled="cardList[11].isRevealed" ng-class="cardList[11].cardColor" class="card btn btn-default">{{cardList[11].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(12)" ng-disabled="cardList[12].isRevealed" ng-class="cardList[12].cardColor" class="card btn btn-default">{{cardList[12].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(13)" ng-disabled="cardList[13].isRevealed" ng-class="cardList[13].cardColor" class="card btn btn-default">{{cardList[13].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(14)" ng-disabled="cardList[14].isRevealed" ng-class="cardList[14].cardColor" class="card btn btn-default">{{cardList[14].name}}</button></div>
+      <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(15)" ng-disabled="cardList[15].isRevealed" ng-class="cardList[15].cardColor" class="card btn btn-default">{{cardList[15].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(16)" ng-disabled="cardList[16].isRevealed" ng-class="cardList[16].cardColor" class="card btn btn-default">{{cardList[16].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(17)" ng-disabled="cardList[17].isRevealed" ng-class="cardList[17].cardColor" class="card btn btn-default">{{cardList[17].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(18)" ng-disabled="cardList[18].isRevealed" ng-class="cardList[18].cardColor" class="card btn btn-default">{{cardList[18].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(19)" ng-disabled="cardList[19].isRevealed" ng-class="cardList[19].cardColor" class="card btn btn-default">{{cardList[19].name}}</button></div>
+      <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(20)" ng-disabled="cardList[20].isRevealed" ng-class="cardList[20].cardColor" class="card btn btn-default">{{cardList[20].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(21)" ng-disabled="cardList[21].isRevealed" ng-class="cardList[21].cardColor" class="card btn btn-default">{{cardList[21].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(22)" ng-disabled="cardList[22].isRevealed" ng-class="cardList[22].cardColor" class="card btn btn-default">{{cardList[22].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(23)" ng-disabled="cardList[23].isRevealed" ng-class="cardList[23].cardColor" class="card btn btn-default">{{cardList[23].name}}</button></div>
+      <div class="col-xs-2 pad_lr"><button ng-click="revealCard(24)" ng-disabled="cardList[24].isRevealed" ng-class="cardList[24].cardColor" class="card btn btn-default">{{cardList[24].name}}</button></div>
+      <div class="col-xs-1"></div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,50 @@
+<div ng-controller="LoginCtrl">
+<center>
+
+  <div class="alert alert-danger alert-dismissible errormsg" role="alert" ng-show="errmsg">{{errmsg}}</div>
+  <div class="menublock panel panel-default">
+  <div class="panel-body">
+  <div class="titleFont">SpyMaster Game</div>
+  <button type="button" ng-click="newGame()" class="btn btn-primary btn-lg btn-block">Start a New Game</button>
+  <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#spyGame">Join a Game as a SpyMaster</button>
+  <button type="button" ng-click="gotoFAQ()" class="mar_b btn btn-info btn-lg btn-block">Learn How To Play</button>    
+  </div>
+  <div class="about-me glyphicon glyphicon-info-sign" data-toggle="modal" data-target=".bs-example-modal-sm"></div>
+
+</center>
+   <div class="modal fade" id="spyGame" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">          
+          <h4>Enter the GameId:</h4>
+          <input type="number" class="form-control" ng-model="spyGameId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="playAsSpy()">Join Game</button>          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content about-box">
+        <div class="modal-body">          
+          <p><span class="purple">Author</span><span class="teal">:</span><span class="green">&nbsp;Kevin Dang</span></p>
+          <p><span class="purple">Platform</span><span class="teal">:</span><span class="green">&nbsp;IBM Bluemix</span></p>
+          <p><span class="purple">Frontend</span><span class="teal">:</span><span class="green">&nbsp;AngularJS <span class="red">+</span> Bootstrap</span></p>
+          <p><span class="purple">Backend</span><span class="teal">:</span><span class="green">&nbsp;Node.js <span class="red">+</span> Express</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a href="https://bluemix.net" target="_blank"><img src="/img/bluemix.svg" class="bluemix"></a>
+          <a href="https://angularjs.org" target="_blank"><img src="/img/ng-logo.png" class="angular"></a>
+          <a href="https://nodejs.org" target="_blank"><img src="/img/logo-header.png" class="nodejs"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
