@@ -248,6 +248,11 @@ td {
   float: left;
 }
 
+.heroku {
+  height: 36px;
+  float: left;
+}
+
 .gcp {
   height: 36px;
   float: left;
@@ -256,7 +261,7 @@ td {
 .angular {
   height: 34px;
   float: left;
-  margin: 0 16px;
+  margin: 0 16px 0 14px;
 }
 
 .nodejs {
