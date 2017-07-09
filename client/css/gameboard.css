@@ -248,10 +248,15 @@ td {
   float: left;
 }
 
+.gcp {
+  height: 36px;
+  float: left;
+}
+
 .angular {
   height: 34px;
   float: left;
-  margin: 0 14px;
+  margin: 0 16px;
 }
 
 .nodejs {
